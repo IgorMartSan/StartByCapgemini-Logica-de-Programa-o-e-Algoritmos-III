@@ -18,14 +18,14 @@ import util.ConnectionFactory;
  */
 public class TaskController {
 
-    public void save(Task task) {
+    public void save(Task task) throws SQLException {
         String query = "INSERT INTO tasks ("
-                + "name" 
-                + "description"
-                +"completed" 
-                +"notes" 
-                +"deadline" 
-                +"createdAt" 
+                + "name," 
+                + "description,"
+                +"completed," 
+                +"notes,"  
+                +"createdAt," 
+                +"deadline,"
                 +"updatedAt"
                 + " ) VALUES (?,?,?,?,?,?,?)";
         
@@ -40,12 +40,13 @@ public class TaskController {
             statemant.setBoolean(3, task.isCompleted());
             statemant.setString(4, task.getNotes());
             statemant.setDate(5, new Date(task.getCreatedAt().getTime()));
-            statemant.setString(6, task.getName());
-            statemant.setString(7, task.getName());
+            statemant.setDate(6, new Date(task.getDeadline().getTime()));
+            statemant.setDate(7, new Date(task.getUpdatedAt().getTime()));
                     
-        } catch (Exception e) {
-            throw new SQLException("Erro ao adicionar a tarefa");
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao salvar a tarefa");
         } finally {
+            ConnectionFactory.closeConnection(conn);
         }
 
     }
@@ -69,9 +70,7 @@ public class TaskController {
         } finally {
             ConnectionFactory.closeConnection(conn);
         }
-
     }
-
     public List<Task> getAll(int idProject) {
         return null;
     }
