@@ -116,11 +116,11 @@ public class TaskController {
             ConnectionFactory.closeConnection(conn,statemant);
         }
     }
-    public List<Task> getAll(int idProject) {
+    public List<Task> getAll() {
         
         
         List<Task> lista = new ArrayList<>();
-        String query = "Select * from tasks WHERE idProject = ?";
+        String query = "Select * from tasks ";
         
         Connection conn = null;
         PreparedStatement statemant = null;
@@ -129,7 +129,6 @@ public class TaskController {
         try {
             conn = ConnectionFactory.getConnection();
             statemant = conn.prepareStatement(query);
-            statemant.setInt(1, idProject);
             resultSet = statemant.executeQuery();
          
                     while (resultSet.next()){

@@ -3,17 +3,54 @@
  */
 package App;
 
+import Controller.ProjetoController;
+import Controller.TaskController;
+import Model.Project;
 import java.sql.Connection;
+import java.util.List;
 import util.ConnectionFactory;
 
 public class App {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
       
-      Connection c = ConnectionFactory.getConnection();
+     
+       // TaskController tc = TaskController();
+        
+        //Task task = new Task ();
+         testeController();
       
-      ConnectionFactory.closeConnection(c);
       
       
+   
+      
+      
+    }
+    
+    public static  void testeController() throws Exception{
+      ProjetoController projetoController = new ProjetoController();
+     
+      
+      Project projeto = new Project();
+      projeto.setName("Projeto teste");
+      projeto.setDescription("gkfjmkdgdkjg");
+      
+      projetoController.save(projeto);
+      projeto.setName("Novo Projeto teste");
+      projetoController.update(projeto);
+      
+      List<Project> listaProjetos = projetoController.getAll();
+      
+      System.out.println("numero de projetos: "+ listaProjetos.size());
+      
+      
+       projetoController.removeById(30);
+       projetoController.removeById(31);
+      
+      
+      
+      
+      
+        
     }
 }

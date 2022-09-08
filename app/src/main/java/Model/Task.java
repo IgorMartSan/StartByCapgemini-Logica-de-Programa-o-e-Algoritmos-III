@@ -44,7 +44,9 @@ public class Task {
     }
 
     public Task() {
+        this.completed = false;
         this.createdAt = new Date();
+        this.updatedAt = new Date();
     }
 
     
