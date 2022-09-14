@@ -4,11 +4,11 @@
 package App;
 
 import Controller.ProjetoController;
-import Controller.TaskController;
+
 import Model.Project;
-import java.sql.Connection;
+
 import java.util.List;
-import util.ConnectionFactory;
+
 
 public class App {
     

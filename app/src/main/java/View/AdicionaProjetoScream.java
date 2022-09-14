@@ -4,17 +4,23 @@
  */
 package View;
 
+import Controller.ProjetoController;
+import Model.Project;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author igor8
  */
 public class AdicionaProjetoScream extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AdicionaScream
-     */
+
+    ProjetoController projetoController ;
+    
+    
     public AdicionaProjetoScream() {
         initComponents();
+        projetoController = new ProjetoController();
     }
 
     /**
@@ -29,8 +35,8 @@ public class AdicionaProjetoScream extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButton_adicionar = new javax.swing.JButton();
+        jButton_cancelar1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel_descricao = new javax.swing.JLabel();
@@ -42,17 +48,22 @@ public class AdicionaProjetoScream extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Projeto");
+        jLabel1.setText("Adicionar Projeto");
 
-        jButton1.setForeground(new java.awt.Color(0, 153, 102));
-        jButton1.setText("Adicionar");
+        jButton_adicionar.setForeground(new java.awt.Color(0, 153, 102));
+        jButton_adicionar.setText("Adicionar");
+        jButton_adicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_adicionarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setForeground(new java.awt.Color(255, 0, 0));
-        jButton3.setText("Cancelar");
+        jButton_cancelar1.setForeground(new java.awt.Color(255, 0, 0));
+        jButton_cancelar1.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -60,11 +71,11 @@ public class AdicionaProjetoScream extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton_adicionar)
                 .addGap(28, 28, 28)
-                .addComponent(jButton3)
+                .addComponent(jButton_cancelar1)
                 .addGap(17, 17, 17))
         );
         jPanel1Layout.setVerticalGroup(
@@ -73,8 +84,8 @@ public class AdicionaProjetoScream extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(jButton_adicionar)
+                    .addComponent(jButton_cancelar1))
                 .addContainerGap())
         );
 
@@ -147,6 +158,18 @@ public class AdicionaProjetoScream extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_descricaoActionPerformed
 
+    private void jButton_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_adicionarActionPerformed
+      
+        Project project = new Project();
+        project.setName(jTextField_nome.getText());
+        project.setDescription(jTextField_descricao.getText());
+        projetoController.save(project);
+        JOptionPane.showMessageDialog(rootPane, "Projeto salvo com sucesso");
+        this.dispose();
+        
+        
+    }//GEN-LAST:event_jButton_adicionarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -158,7 +181,7 @@ public class AdicionaProjetoScream extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -184,9 +207,9 @@ public class AdicionaProjetoScream extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton_adicionar;
+    private javax.swing.JButton jButton_cancelar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel_descricao;
